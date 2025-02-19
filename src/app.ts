@@ -1,6 +1,6 @@
-// const express = require("express");
 import cors from 'cors';
 import express, { Request, Response } from 'express';
+import { StudentRoutes } from './app/modules/student/student.route';
 const app = express();
 
 ///parser
@@ -8,11 +8,17 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req: Request, res: Response) => {
+//application routes
+
+app.use('/api/v1/students', StudentRoutes);
+
+const getAController = (req: Request, res: Response) => {
   const a = 10;
   res.send(a);
-});
-console.log(process.cwd());
+};
+
+app.get('/', getAController);
+// console.log(process.cwd());
 ///C:\Users\ADMIN\projects\first-project-new/.env
 
 export default app;
